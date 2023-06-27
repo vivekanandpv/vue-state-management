@@ -1,27 +1,25 @@
-<template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
-</template>
+<script setup lang="ts">
+import store from './store';
+import Sample from '@/components/Sample.vue';
 
-<script lang="ts">
-import { defineComponent } from 'vue';
-import HelloWorld from './components/HelloWorld.vue';
+const increment = () => {
+  store.dispatch('incrementAction');
+};
 
-export default defineComponent({
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-});
+const decrement = () => {
+  store.dispatch('decrementAction');
+};
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+<template>
+  <div class="p-5">
+    <h2>Vuex Demo</h2>
+    <hr />
+    <p>Counter: {{ store.state.counter }}</p>
+    <button class="btn btn-primary me-4" @click="increment">Increment</button>
+    <button class="btn btn-primary me-4" @click="decrement">Decrement</button>
+
+    <hr />
+    <Sample />
+  </div>
+</template>
